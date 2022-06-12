@@ -1,0 +1,68 @@
+<center>
+    {% extends "base.html" %}
+    {% block content %}
+        <!-- Форма equation -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div>
+                <h2>{{ "Вычислить квадратный корень уравнения." }}</h2>
+                <h4 style="color: #666666; width: 480px">{{ "Здесь можно рассчитать квадратныйы корень уравнения вида ax^2 + bx + c = 0."|linebreaks }}</h4>
+            </div>
+
+            <div class="form-group row">
+                <div>
+                    {{ equation_form.a_var }}{{ "x^2 + " }}{{ equation_form.b_var }}{{ "x + " }}{{ equation_form.c_var }}{{ " = 0" }}
+                    <button type="submit" class="btn btn-primary">🧮</button>
+                </div>
+            </div>
+
+            {% if equation_form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ equation_form.errors.number|escape }}
+                </div>
+            {% endif %}
+
+            {% if result %}
+                <h2 style="color: lightslategrey">{{ result }}</h2>
+            {% endif %}
+
+
+        </form>
+        <!-- Форма guess color item -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div>
+                <h2>{{ "Угадать цвет предмета" }}</h2>
+                <h4 style="color: #666666; width: 500px">{{ "Есть группа из 100 предметов. Предметы могут быть синего, зелёного и красного цвета. Известно, что предметов синего цвета сильно больше, чем предметов зелёного цвета, а предметов зелёного цвета немного больше, чем предметов красного цвета. Если ввести номер предмета, сервис постарается угадать его цвет."|linebreaks }}</h4>
+            </div>
+
+            <div class="form-group row">
+                <div>
+                    {{ "Номер предмета от 1 до 100:" }}
+                    {{ color_form.number }}
+                    <button type="submit" class="btn btn-primary">🔮</button>
+                </div>
+            </div>
+
+            {% if color_form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ color_form.errors.number|escape }}
+                </div>
+            {% endif %}
+
+            {% if color == "b"%}
+                <h2 style="color: blue">Кажется, цвет предмета - синий</h2>
+            {% elif color == "g"%}
+                <h2 style="color: green">Вероятно, цвет предмета - зеленый.</h2>
+            {% elif color == "r"%}
+                <h2 style="color: red">Возможно, цвет предмета - красный</h2>
+            {% endif %}
+
+            {%  if not request.user.is_authenticated %}
+                <h4 style="color: lightgray">Для более точных расчетов необходимо авторизоваться.</h4>
+            {% endif %}
+        </form>
+    {% endblock %}
+</center>
