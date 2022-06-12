@@ -26,11 +26,11 @@
 ### В консоли сервера (контейнера) в директории проекта, где находится manage.py:
 #### DB_ENGINE=django.db.backends.postgresql_psycopg2 - драйвер БД
 
-#### DB_NAME=postgres - название базы данных
+#### DB_NAME=db_name - название базы данных
 
-#### DB_USER=postgres - имя пользователя базы данных
+#### DB_USER=username - имя пользователя базы данных
 
-#### DB_PASS=postgres - пароль пользователя базы данных
+#### DB_PASS=password - пароль пользователя базы данных
 
 #### DB_HOST=localhost - хост, на который будут отправляться запросы, если на том же сервере: localhost
 
