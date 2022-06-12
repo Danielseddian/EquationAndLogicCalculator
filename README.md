@@ -43,7 +43,7 @@
 # Запуск сервиса:
 ### БД в консоли сервера (контейнера):
 > docker run --rm -e POSTGRES_USERNAME=postgres -e POSTGRES_PASSWORD=postgres --name postgres -p 5432:5432 postgres
-### Перед первым запуском или после изменения БД, в консоли сервера (контейнера) в директории с проектом (где manage.py):
+### Миграции перед первым запуском или после изменения БД, в консоли сервера (контейнера) в директории с проектом (где manage.py):
 > python3 manage.py makemigrations application # (application). - опционально, директория с приложением
 
 > python3 manage.py migrate --run-syncdb  # (--run-syncdb). - опционально, создаст новую таблицу
