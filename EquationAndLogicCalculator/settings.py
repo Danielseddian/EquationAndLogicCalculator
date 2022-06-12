@@ -79,8 +79,12 @@ TEMPLATES = [
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        'ENGINE': ENVS.get("DB_ENGINE", 'django.db.backends.postgresql_psycopg2'),
+        'NAME': ENVS.get("DB_NAME", 'postgres'),
+        'USER': ENVS.get("DB_USER", 'postgres'),
+        'PASSWORD': ENVS.get("DB_PASS", 'postgres'),
+        'HOST': ENVS.get("DB_HOST", 'localhost'),
+        'PORT': ENVS.get("DB_PORT", '5432'),
     }
 }
 
